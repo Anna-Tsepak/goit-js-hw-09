@@ -41,10 +41,10 @@ function convertMs(ms) {
   const seconds = Math.floor((((ms % day) % hour) % minute) / second);
   return { days, hours, minutes, seconds };
 }
-function addLeadingZero(value) {
+function addZero(value) {
   return value.toString().padStart(2, '0');
 }
-function onChangeContent({ days, hours, minutes, seconds }) {
+function onChangeTime({ days, hours, minutes, seconds }) {
         timerDaysRef.textContent = days;
         timerHoursRef.textContent = hours;
         timerMinutesRef.textContent = minutes;
@@ -56,12 +56,8 @@ btnStart.addEventListener('click', () => {
     btnStart.disabled = true;
     if (countdown >= 0) {
       const data = convertMs(countdown);
-      onChangeContent(data)
-      console.log(onChangeContent)
-      //  days.textContent = addLeadingZero(timeObject.days);
-      //  hours.textContent = addLeadingZero(timeObject.hours);
-      //  minutes.textContent = addLeadingZero(timeObject.minutes);
-      //  seconds.textContent = addLeadingZero(timeObject.seconds);
+      onChangeTime(data)
+      
       if (countdown <= 10000) {
         timerHtml.style.color = 'tomato';
       }
